@@ -3,12 +3,12 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-witdh, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="Amina" />
-  <!-- <meta http-equiv="refresh" content="10" /> -->
   <link rel="icon" href="Img/animal.png" type="img/icon-x" />
   <title>Purrora | Animal Adoption Center</title>
   <link rel="stylesheet" href="CSS/style.css" />
+  <link rel="stylesheet" href="CSS/modal.css" />
 </head>
 
 <body>
@@ -37,21 +37,128 @@
   </header>
 
   <main>
-    <div id="addpetsmodel">
-      <div id="addpetheader"></div>
-      <div id="addpetbody"></div>
+    <div id="addpet-modal" class="addpets-model">
+      <div class="addpet-header">
+        <div class="title">
+          <img src="Img/animal.png" alt="paw icon">
+          <p>Add New Pet</p>
+        </div>
+        <button class="close-button" id="close-modal">&times;</button>
+      </div>
+      <div class="addpet-body">
+        <form id="addpet-form">
+          <div class="form-group">
+            <label for="animalName">Name</label>
+            <input type="text" id="animalName" name="name" placeholder="Whiskers" required>
+          </div>
+          <div class="form-group">
+            <label for="animalSpecies">Species</label>
+            <select id="animalSpecies" name="species" required>
+              <option value="">Select species</option>
+              <option value="Cat">Cat</option>
+              <option value="Dog">Dog</option>
+              <option value="Bird">Bird</option>
+              <option value="Rabbit">Rabbit</option>
+              <option value="Hamster">Hamster</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="animalColor">Color</label>
+            <input type="text" id="animalColor" name="color" placeholder="Orange tabby" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="animalAge">Age</label>
+              <input type="number" id="animalAge" name="age" placeholder="2" min="0" required>
+            </div>
+            <div class="form-group half">
+              <label for="animalGender">Gender</label>
+              <select id="animalGender" name="gender" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="animalHealth">Health Status</label>
+            <select id="animalHealth" name="health_status" required>
+              <option value="">Select status</option>
+              <option value="Healthy">Healthy</option>
+              <option value="Under Treatment">Under Treatment</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn">Add Pet</button>
+        </form>
+      </div>
     </div>
-    <!--Add animal-->
-    <div id="listpetsmodel"></div>
-    <!--Filter pets and show full list...-->
-    <div id="petmanagmentmodel"></div>
-    <!--Edit and Delete pet -->
+    <div id="overlay"></div>
+
+    <!-- Pets List Modal -->
+    <div id="petslist-modal" class="addpets-model">
+      <div class="addpet-header">
+        <div class="title">
+          <img src="Img/animal.png" alt="paw icon">
+          <p>Pets List</p>
+        </div>
+        <button class="close-button" id="close-petslist">&times;</button>
+      </div>
+      <div class="addpet-body">
+        <div class="filter-row">
+          <input type="text" id="filterName" placeholder="Filter by name">
+          <select id="filterSpecies">
+            <option value="">All Species</option>
+            <option value="Cat">Cat</option>
+            <option value="Dog">Dog</option>
+            <option value="Bird">Bird</option>
+            <option value="Rabbit">Rabbit</option>
+            <option value="Hamster">Hamster</option>
+            <option value="Other">Other</option>
+          </select>
+          <select id="filterHealth">
+            <option value="">All Health</option>
+            <option value="Healthy">Healthy</option>
+            <option value="Under Treatment">Under Treatment</option>
+          </select>
+        </div>
+        <div id="petslist-container">
+          <table class="pets-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Species</th>
+                <th>Color</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Health</th>
+              </tr>
+            </thead>
+            <tbody id="petslist-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Pets Modal -->
+    <div id="managepets-modal" class="addpets-model">
+      <div class="addpet-header">
+        <div class="title">
+          <img src="Img/animal.png" alt="paw icon">
+          <p>Manage Pets</p>
+        </div>
+        <button class="close-button" id="close-managepets">&times;</button>
+      </div>
+      <div class="addpet-body">
+        <div id="managepets-container"></div>
+      </div>
+    </div>
   </main>
 
   <footer>
     <div id="poem">
       <p>
-        hello amina Purrora wakes with the morning glow, wiskers brushed by the rising
+        Purrora wakes with the morning glow, wiskers brushed by the rising
         sun. A gentle hymn the daylight knows, Soft as love, yet vast as dawn.
       </p>
     </div>
@@ -59,37 +166,223 @@
   </footer>
 
   <!-- I didn't make it!!! -->
-  <script src="../JS/oneko.js"></script>
+  <script src="JS/oneko.js"></script>
   <script>
-    try {
-      fetch(
-        new Request(
-          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-          { method: "HEAD", mode: "no-cors" }
-        )
-      )
-        .then(function (response) {
-          return true;
+    const modal = document.getElementById("addpet-modal");
+    const overlay = document.getElementById("overlay");
+    const closeBtn = document.getElementById("close-modal");
+    const addPetsBtn = document.getElementById("addpets");
+    const petslistModal = document.getElementById("petslist-modal");
+    const managepetsModal = document.getElementById("managepets-modal");
+    const form = document.getElementById("addpet-form");
+
+    let allPets = [];
+
+    function openModal(modalEl) {
+      modalEl.classList.add("active");
+      overlay.classList.add("active");
+    }
+
+    function closeModal(modalEl) {
+      modalEl.classList.remove("active");
+      overlay.classList.remove("active");
+    }
+
+    function closeAddModal() {
+      modal.classList.remove("active");
+      overlay.classList.remove("active");
+      form.reset();
+    }
+
+    addPetsBtn.addEventListener("click", function() { openModal(modal); });
+    document.getElementById("close-modal").addEventListener("click", closeAddModal);
+    document.getElementById("petslists").addEventListener("click", function() {
+      openModal(petslistModal);
+      fetchPetsList();
+    });
+    document.getElementById("managepets").addEventListener("click", function() {
+      openModal(managepetsModal);
+      fetchManagePets();
+    });
+    document.getElementById("close-petslist").addEventListener("click", function() { closeModal(petslistModal); });
+    document.getElementById("close-managepets").addEventListener("click", function() { closeModal(managepetsModal); });
+    overlay.addEventListener("click", function() {
+      closeModal(modal);
+      closeModal(petslistModal);
+      closeModal(managepetsModal);
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") {
+        closeModal(modal);
+        closeModal(petslistModal);
+        closeModal(managepetsModal);
+      }
+    });
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        name: document.getElementById("animalName").value,
+        species: document.getElementById("animalSpecies").value,
+        color: document.getElementById("animalColor").value,
+        age: parseInt(document.getElementById("animalAge").value, 10),
+        gender: document.getElementById("animalGender").value,
+        health_status: document.getElementById("animalHealth").value
+      };
+
+      fetch("api.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        if (data.success) {
+          closeAddModal();
+          alert("Pet added successfully!");
+        } else {
+          alert("Error: " + (data.error || "Unknown error"));
+        }
+      })
+      .catch(function(error) {
+        alert("Failed to add pet. Please try again.");
+      });
+    });
+
+    function fetchPetsList() {
+      fetch("api.php")
+        .then(function(response) { return response.json(); })
+        .then(function(pets) {
+          allPets = pets;
+          renderPetsList(pets);
         })
-        .catch(function (e) {
-          var carbonScript = document.createElement("script");
-          carbonScript.src =
-            "//cdn.carbonads.com/carbon.js?serve=CE7DC2JW&placement=wwwcssscriptcom";
-          carbonScript.id = "_carbonads_js";
-          document.getElementById("carbon-block").appendChild(carbonScript);
+        .catch(function(error) {
+          console.error("Error fetching pets:", error);
         });
-    } catch (error) {
-      console.log(error);
     }
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLWL5N9CSM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
+
+    function renderPetsList(pets) {
+      const tbody = document.getElementById("petslist-body");
+      const nameFilter = document.getElementById("filterName").value.toLowerCase();
+      const speciesFilter = document.getElementById("filterSpecies").value;
+      const healthFilter = document.getElementById("filterHealth").value;
+
+      const filtered = pets.filter(function(pet) {
+        const matchName = pet.name.toLowerCase().includes(nameFilter);
+        const matchSpecies = !speciesFilter || pet.species === speciesFilter;
+        const matchHealth = !healthFilter || pet.health_status === healthFilter;
+        return matchName && matchSpecies && matchHealth;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No pets found</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(function(pet) {
+        const healthClass = pet.health_status === "Healthy" ? "health-healthy" : "health-treatment";
+        return '<tr>' +
+          '<td>' + escapeHtml(pet.name) + '</td>' +
+          '<td>' + escapeHtml(pet.species) + '</td>' +
+          '<td>' + escapeHtml(pet.color) + '</td>' +
+          '<td>' + pet.age + '</td>' +
+          '<td>' + escapeHtml(pet.gender) + '</td>' +
+          '<td class="' + healthClass + '">' + escapeHtml(pet.health_status) + '</td>' +
+        '</tr>';
+      }).join("");
     }
-    gtag("js", new Date());
-    gtag("config", "G-LLWL5N9CSM");
+
+    function fetchManagePets() {
+      fetch("api.php")
+        .then(function(response) { return response.json(); })
+        .then(function(pets) {
+          renderManagePets(pets);
+        })
+        .catch(function(error) {
+          console.error("Error fetching pets:", error);
+        });
+    }
+
+    function renderManagePets(pets) {
+      const container = document.getElementById("managepets-container");
+      
+      if (pets.length === 0) {
+        container.innerHTML = '<p class="no-pets">No pets to manage</p>';
+        return;
+      }
+
+      container.innerHTML = pets.map(function(pet) {
+        return '<div class="manage-card" data-id="' + pet.id + '">' +
+          '<div class="manage-card-info">' +
+            '<strong>' + escapeHtml(pet.name) + '</strong>' +
+            '<span>' + escapeHtml(pet.species) + ' | ' + escapeHtml(pet.color) + ' | ' + pet.age + ' yrs | ' + escapeHtml(pet.gender) + '</span>' +
+          '</div>' +
+          '<div class="manage-card-actions">' +
+            '<select onchange="updatePetStatus(' + pet.id + ', this.value)">' +
+              '<option value="Healthy"' + (pet.health_status === "Healthy" ? ' selected' : '') + '>Healthy</option>' +
+              '<option value="Under Treatment"' + (pet.health_status === "Under Treatment" ? ' selected' : '') + '>Under Treatment</option>' +
+            '</select>' +
+            '<button class="manage-btn manage-btn-delete" onclick="deletePet(' + pet.id + ')">Remove</button>' +
+          '</div>' +
+        '</div>';
+      }).join("");
+    }
+
+    window.updatePetStatus = function(id, healthStatus) {
+      fetch("api.php", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id, health_status: healthStatus })
+      })
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        if (data.success) {
+          fetchManagePets();
+        } else {
+          alert("Error updating status: " + (data.error || "Unknown error"));
+        }
+      })
+      .catch(function(error) {
+        alert("Failed to update status");
+      });
+    };
+
+    window.deletePet = function(id) {
+      if (!confirm("Are you sure you want to remove this pet?")) return;
+      
+      fetch("api.php", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id })
+      })
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        if (data.success) {
+          fetchManagePets();
+        } else {
+          alert("Error deleting pet: " + (data.error || "Unknown error"));
+        }
+      })
+      .catch(function(error) {
+        alert("Failed to delete pet");
+      });
+    };
+
+    document.getElementById("filterName").addEventListener("input", function() { renderPetsList(allPets); });
+    document.getElementById("filterSpecies").addEventListener("change", function() { renderPetsList(allPets); });
+    document.getElementById("filterHealth").addEventListener("change", function() { renderPetsList(allPets); });
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
   </script>
 </body>
 

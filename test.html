@@ -67,12 +67,39 @@
 
     <section id="animals" class="tab">
       <h2>Manage Animals</h2>
-      <form>
-        <input type="text" placeholder="Animal Name">
-        <input type="text" placeholder="Species">
-        <button>Add</button>
+      <form id="animalForm">
+        <input type="text" id="animalName" name="name" placeholder="Animal Name" required>
+        <input type="text" id="animalSpecies" name="species" placeholder="Species" required>
+        <input type="text" id="animalColor" name="color" placeholder="Color" required>
+        <input type="number" id="animalAge" name="age" placeholder="Age" min="0" required>
+        <select id="animalGender" name="gender" required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <select id="animalHealth" name="health_status" required>
+          <option value="">Select Health Status</option>
+          <option value="Healthy">Healthy</option>
+          <option value="Under Treatment">Under Treatment</option>
+        </select>
+        <button type="submit">Add</button>
       </form>
-      <p>List of animals will go here...</p>
+      <table id="animalsTable" border="1" style="margin-top: 20px; width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background: #444; color: white;">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Species</th>
+            <th>Color</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Health Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="animalsList">
+        </tbody>
+      </table>
     </section>
 
     <section id="settings" class="tab">
@@ -85,6 +112,7 @@
     <p>&copy; 2026 Purrora Animal Center</p>
   </footer>
 
+  <script src="JS/api_logic.js"></script>
   <script>
     function showTab(tabId) {
       document.querySelectorAll('.tab').forEach(div => div.classList.remove('active'));
