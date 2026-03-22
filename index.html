@@ -1,96 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-witdh, initial-scale=1.0" />
-    <meta name="author" content="Amina" />
-    <!-- <meta http-equiv="refresh" content="10" /> -->
-    <link rel="icon" href="Img/animal.png" type="img/icon-x" />
-    <title>Purrora | Animal Adoption Center</title>
-    <link rel="stylesheet" href="CSS/style.css" />
-  </head>
-  <body>
-    <header>
-      <div class="logobox">
-        <img src="Img/animal.png" alt="logo" title="Purrora logo" />
-        <h1>Purrora</h1>
-      </div>
-      <div class="navbox">
-        <h2>Admin controls</h2>
-        <nav>
-          <ul>
-            <!--The buttons go here-->
-            <li>
-              <button class="navbutton" id="addpets">Add a pet</button>
-            </li>
-            <li>
-              <button class="navbutton" id="petslists">Pets list</button>
-            </li>
-            <li>
-              <button class="navbutton" id="managepets">Manage pets</button>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
 
-    <main>
-      <div id="addpetsmodel">
-        <div id="addpetheader"></div>
-        <div id="addpetbody"></div>
-      </div>
-      <!--Add animal-->
-      <div id="listpetsmodel"></div>
-      <!--Filter pets and show full list...-->
-      <div id="petmanagmentmodel"></div>
-      <!--Edit and Delete pet -->
-    </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-witdh, initial-scale=1.0" />
+  <meta name="author" content="Amina" />
+  <!-- <meta http-equiv="refresh" content="10" /> -->
+  <link rel="icon" href="Img/animal.png" type="img/icon-x" />
+  <title>Purrora | Animal Adoption Center</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
 
-    <footer>
-      <div id="poem">
-        <p>
-          Purrora wakes with the morning glow, wiskers brushed by the rising
-          sun. A gentle hymn the daylight knows, Soft as love, yet vast as dawn.
-        </p>
-      </div>
-      <p id="copyright">&copy; 2026 Purrora-Amina-Yousra</p>
-    </footer>
+<body>
+  <header>
+    <div class="logobox">
+      <img src="Img/animal.png" alt="logo" title="Purrora logo" />
+      <h1>Purrora</h1>
+    </div>
+    <div class="navbox">
+      <h2>Admin controls</h2>
+      <nav>
+        <ul>
+          <!--The buttons go here-->
+          <li>
+            <button class="navbutton" id="addpets">Add a pet</button>
+          </li>
+          <li>
+            <button class="navbutton" id="petslists">Pets list</button>
+          </li>
+          <li>
+            <button class="navbutton" id="managepets">Manage pets</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- I didn't make it!!! -->
-    <script src="../JS/oneko.js"></script>
-    <script>
-      try {
-        fetch(
-          new Request(
-            "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-            { method: "HEAD", mode: "no-cors" }
-          )
+  <main>
+    <div id="addpetsmodel">
+      <div id="addpetheader"></div>
+      <div id="addpetbody"></div>
+    </div>
+    <!--Add animal-->
+    <div id="listpetsmodel"></div>
+    <!--Filter pets and show full list...-->
+    <div id="petmanagmentmodel"></div>
+    <!--Edit and Delete pet -->
+  </main>
+
+  <footer>
+    <div id="poem">
+      <p>
+        hello amina Purrora wakes with the morning glow, wiskers brushed by the rising
+        sun. A gentle hymn the daylight knows, Soft as love, yet vast as dawn.
+      </p>
+    </div>
+    <p id="copyright">&copy; 2026 Purrora-Amina-Yousra</p>
+  </footer>
+
+  <!-- I didn't make it!!! -->
+  <script src="../JS/oneko.js"></script>
+  <script>
+    try {
+      fetch(
+        new Request(
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+          { method: "HEAD", mode: "no-cors" }
         )
-          .then(function (response) {
-            return true;
-          })
-          .catch(function (e) {
-            var carbonScript = document.createElement("script");
-            carbonScript.src =
-              "//cdn.carbonads.com/carbon.js?serve=CE7DC2JW&placement=wwwcssscriptcom";
-            carbonScript.id = "_carbonads_js";
-            document.getElementById("carbon-block").appendChild(carbonScript);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    </script>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-LLWL5N9CSM"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-LLWL5N9CSM");
-    </script>
-  </body>
+      )
+        .then(function (response) {
+          return true;
+        })
+        .catch(function (e) {
+          var carbonScript = document.createElement("script");
+          carbonScript.src =
+            "//cdn.carbonads.com/carbon.js?serve=CE7DC2JW&placement=wwwcssscriptcom";
+          carbonScript.id = "_carbonads_js";
+          document.getElementById("carbon-block").appendChild(carbonScript);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLWL5N9CSM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-LLWL5N9CSM");
+  </script>
+</body>
+
 </html>
