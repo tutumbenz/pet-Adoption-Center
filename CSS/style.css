@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace, Arial, Helvetica, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column; /* under each other*/
+  gap: 10px;
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  height: 100vh; /* full viewport height */
+  background-image: url(../References/aurora.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/*Header*/
+header {
+  background: transparent;
+  border: 1px solid #0005004d;
+  backdrop-filter: blur(15px);
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 0 30px black;
+  width: 350px;
+  height: 400px;
+}
+.logobox {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.logobox img {
+  width: 70px;
+  height: fit-content;
+}
+.logobox h1 {
+  color: #1b1b1b;
+}
+.navbox {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 200px;
+  margin-top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.navbutton {
+  border: 1px solid;
+  border-color: #fffdfd;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #051978;
+  color: #fffdfd;
+  background-color: #571c9145;
+  padding: 5% 10% 5% 10%;
+  width: 300px;
+  height: fit-content;
+  cursor: pointer;
+  transition: .5s ease;
+
+}
+.navbutton:hover {
+  color: #ffb1fe;
+  background-color: #4c26739d;
+  transform: scale(1.09);
+}
+.navbutton:active {
+  color: #fbdbfa;
+  background-color: #b06fed6d;
+  transform: scale(1);
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.navbox h2 {
+  color: #1b1b1b;
+  position: absolute;
+  top: -55px;
+  font-weight: 100;
+
+}
+/*Main*/
+/* main {
+  border: 2px solid black;
+  width: 200px;
+  height: 100px;
+} */
+/*Footer*/
+footer {
+  position: fixed;
+  top: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  width: fit-content;
+  padding-top: 11%;
+  color: #c9dcf9;
+  text-shadow: 0 0 10px #ffffff;
+}

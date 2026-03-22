@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(/References/aurora.jpg);
+  background-attachment: fixed;
+}
+.addpets-model {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 1px solid #fffdfd;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: transparent;
+  backdrop-filter: blur(90px);
+  width: 40%;
+  height: 50%;
+  max-width: 80%;
+  max-height: 80%;
+}
+.addpets-model.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+.addpet-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #fffdfd;
+}
+.addpet-header .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addpet-header .title p {
+  margin-left: 5px;
+  font-size: larger;
+  font-weight: 800;
+}
+.addpet-header img {
+  width: 30px;
+  height: fit-content;
+}
+.addpet-header .close-button{
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: larger;
+}
+.addpet-body {
+  padding: 10px 15px;
+}
+#overlay {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(0,0,0,0.4);
+  pointer-events: none;
+}
+ #overlay.active {
+  opacity: 1;
+  pointer-events: all;
+ }
