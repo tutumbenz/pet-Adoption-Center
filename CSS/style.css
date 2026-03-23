@@ -66,8 +66,7 @@ header {
   width: 300px;
   height: fit-content;
   cursor: pointer;
-  transition: .5s ease;
-
+  transition: 0.5s ease;
 }
 .navbutton:hover {
   color: #ffb1fe;
@@ -92,14 +91,12 @@ ul {
   position: absolute;
   top: -55px;
   font-weight: 100;
-
 }
 /*Main*/
 /* main {
-  border: 2px solid black;
-  width: 200px;
-  height: 100px;
+  In the model.css 
 } */
+ 
 /*Footer*/
 footer {
   position: fixed;

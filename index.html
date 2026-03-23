@@ -67,6 +67,7 @@
                 <option value="Rabbit">Rabbit</option>
                 <option value="Hamster">Hamster</option>
                 <option value="Turtule">Turtule</option>
+                <!--the turtule is a new addition, work on it in php also!-->
                 <option value="Other">Other</option>
               </select>
             </div>
@@ -109,10 +110,18 @@
                 <option value="Under Treatment">Under Treatment</option>
               </select>
             </div>
+            <!-- add an adoption button here -->
+            <div class="form-group">
+              <div class="isAdoptedContainer">
+                <label for="filterIsAdopted">Adopted</label>
+                <input id="isAdopted" name="isAdopted" type="checkbox" />
+              </div>
+            </div>
             <button type="submit" class="submit-btn">Add Pet</button>
           </form>
         </div>
       </div>
+      <!--End of Add a Pet Model-->
       <div id="overlay"></div>
 
       <!-- Pets List Modal -->
@@ -134,6 +143,7 @@
               <option value="Bird">Bird</option>
               <option value="Rabbit">Rabbit</option>
               <option value="Hamster">Hamster</option>
+              <option value="Turtule">Turtule</option>
               <option value="Other">Other</option>
             </select>
             <select id="filterHealth">
@@ -141,6 +151,20 @@
               <option value="Healthy">Healthy</option>
               <option value="Under Treatment">Under Treatment</option>
             </select>
+            <div class="filterAdopted">
+              <label
+                class="filterAdopted"
+                id="filterAdoptedLabel"
+                for="filterIsAdopted"
+                >Adopted</label
+              >
+              <input
+                class="filterAdopted"
+                id="filterAdoptedCheckBox"
+                type="checkbox"
+                id="filterIsAdopted"
+              />
+            </div>
           </div>
           <div id="petslist-container">
             <table class="pets-table">
@@ -159,6 +183,7 @@
           </div>
         </div>
       </div>
+      <!--End of Pets List Model-->
 
       <!-- Manage Pets Modal -->
       <div id="managepets-modal" class="addpets-model">
@@ -173,6 +198,7 @@
           <div id="managepets-container"></div>
         </div>
       </div>
+      <!--End of Manage Pets Modal-->
     </main>
 
     <footer>
@@ -185,7 +211,7 @@
       <p id="copyright">&copy; 2026 Purrora-Amina-Yousra</p>
     </footer>
 
-    <!-- I didn't make it!!! -->
+    <!-- Java Script -->
     <script src="JS/oneko.js"></script>
     <script>
       const modal = document.getElementById("addpet-modal");
