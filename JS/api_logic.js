@@ -119,14 +119,14 @@ function renderPetsList(pets) {
     "filterAdoptedCheckBox"
   ).checked;
 
-  console.log("Filtering... Show only adopted:", adoptedFilter); // to check
+  //console.log("Filtering... Show only adopted:", adoptedFilter); --> to check
 
   const filtered = pets.filter(function (pet) {
     const matchName = pet.name.toLowerCase().includes(nameFilter);
     const matchSpecies = !speciesFilter || pet.species === speciesFilter;
     const matchHealth = !healthFilter || pet.health_status === healthFilter;
-    const isAdopted = parseInt(pet.isAdopted) === 1;
-    const matchAdopted = !adoptedFilter || isAdopted;
+    const isfilterAdopted = parseInt(pet.isAdopted) === 1;
+    const matchAdopted = !adoptedFilter || isfilterAdopted;
     return matchName && matchSpecies && matchHealth && matchAdopted;
   });
 
@@ -213,7 +213,7 @@ function renderManagePets(pets) {
         "</span>" +
         "</div>" +
         '<div class="manage-card-actions">' +
-        '<label class="adopt-label">' +
+        '<label class="adopt-label">' + 
         'Adopted <input type="checkbox" ' +
         (parseInt(pet.isAdopted) === 1 ? "checked" : "") +
         ' onchange="toggleAdoption(' +
@@ -254,10 +254,10 @@ window.toggleAdoption = function (id, isChecked) {
       if (data.success) {
         fetchPetsList();
       } else {
-        alert("Error updating status: " + data.error);
+        alert("Error updating adoption status: " + data.error);
       }
     })
-    .catch((err) => console.error("Update failed:", err)); //using console instead of alert
+    .catch((err) => console.error("Update failed:", err)); //using console instead of alert("message");
 };
 
 window.updatePetStatus = function (id, healthStatus) {
@@ -273,7 +273,9 @@ window.updatePetStatus = function (id, healthStatus) {
       if (data.success) {
         fetchManagePets();
       } else {
-        alert("Error updating status: " + (data.error || "Unknown error"));
+        alert(
+          "Error updating health status: " + (data.error || "Unknown error")
+        );
       }
     })
     .catch(function (error) {
