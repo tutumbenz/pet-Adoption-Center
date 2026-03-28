@@ -213,6 +213,13 @@ function renderManagePets(pets) {
         "</span>" +
         "</div>" +
         '<div class="manage-card-actions">' +
+        '<label class="adopt-label">' +
+        'Adopted <input type="checkbox" ' +
+        (parseInt(pet.isAdopted) === 1 ? "checked" : "") +
+        ' onchange="toggleAdoption(' +
+        pet.id +
+        ', this.checked)">' +
+        "</label>" +
         '<select onchange="updatePetStatus(' +
         pet.id +
         ', this.value)">' +
@@ -222,7 +229,7 @@ function renderManagePets(pets) {
         '<option value="Under Treatment"' +
         (pet.health_status === "Under Treatment" ? " selected" : "") +
         ">Under Treatment</option>" +
-        "</select>" +
+        "</select>" + //add adoption butten here
         '<button class="manage-btn manage-btn-delete" onclick="deletePet(' +
         pet.id +
         ')">Remove</button>' +
@@ -285,10 +292,8 @@ document
   .addEventListener("change", function () {
     renderPetsList(allPets);
   });
-document
-  .getElementById("filterHealth")
-  .addEventListener("change", function (){
-    renderPetsList(allPets);
+document.getElementById("filterHealth").addEventListener("change", function () {
+  renderPetsList(allPets);
 });
 
 const adoptCheckbox = document.getElementById("filterAdoptedCheckBox");

@@ -40,14 +40,21 @@ try {
         case 'PATCH':
             $input = json_decode(file_get_contents('php://input'), true);
             
-            if (!isset($input['id'], $input['health_status'])) {
+            if (!isset($input['id'])) {
                 http_response_code(400);
-                echo json_encode(['error' => 'Missing id or health_status']);
+                echo json_encode(['error' => 'Missing id']);
                 break;
             }
-
-            $stmt = $pdo->prepare('UPDATE animals SET health_status = ? WHERE id = ?');
-            $stmt->execute([$input['health_status'], $input['id']]);
+        
+            if (isset($input['health_status'])) {
+                $stmt = $pdo->prepare('UPDATE animals SET health_status = ? WHERE id = ?');
+                $stmt->execute([$input['health_status'], $input['id']]);
+            }
+        
+            if (isset($input['isAdopted'])) {
+                $stmt = $pdo->prepare('UPDATE animals SET isAdopted = ? WHERE id = ?');
+                $stmt->execute([(int)$input['isAdopted'], $input['id']]);
+            }
             
             echo json_encode(['success' => true]);
             break;

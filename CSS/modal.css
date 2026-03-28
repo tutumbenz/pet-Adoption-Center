@@ -194,12 +194,20 @@ body {
   background: rgba(255, 253, 253, 0.15);
   border: 1px solid rgba(255, 253, 253, 0.3);
   border-radius: 8px;
-
 }
 
 #petslist-container {
   max-height: 400px;
   overflow-y: auto;
+  padding-right: 10px; /* for the scrol bar */
+}
+#petslist-container::-webkit-scrollbar {
+  width: 6px;
+}
+#petslist-container::-webkit-scrollbar-thumb {
+  width: 6px;
+  background: #fffdfd;
+  border-radius: 10px;
 }
 .pets-table {
   width: 100%;
@@ -224,6 +232,19 @@ body {
 }
 .health-treatment {
   color: #ffb347;
+}
+#managepets-container {
+  max-height: 450px;
+  overflow-y: auto;
+  padding-right: 10px; /* for the scrol bar */
+}
+#managepets-container::-webkit-scrollbar {
+  width: 6px;
+}
+#managepets-container::-webkit-scrollbar-thumb {
+  width: 6px;
+  background: #fffdfd;
+  border-radius: 10px;
 }
 .manage-card {
   display: flex;
@@ -251,6 +272,24 @@ body {
   display: flex;
   gap: 10px;
   align-items: center;
+}
+.manage-card-actions {
+  width: fit-content;
+  color: #cbd5e0;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.manage-card-actions label{
+  background: rgba(255, 253, 253, 0.15);
+  border: 1px solid rgba(255, 253, 253, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  color: #fffdfd;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .manage-card-actions select {
   background: rgba(255, 253, 253, 0.15);
