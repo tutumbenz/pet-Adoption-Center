@@ -240,6 +240,26 @@ function renderManagePets(pets) {
     .join("");
 }
 
+window.toggleAdoption = function (id, isChecked) {
+  fetch("api.php", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: id,
+      isAdopted: isChecked ? 1 : 0,
+    }),
+  })
+    .then((res) => res.json()) // Other way to use function (response)
+    .then((data) => {
+      if (data.success) {
+        fetchPetsList();
+      } else {
+        alert("Error updating status: " + data.error);
+      }
+    })
+    .catch((err) => console.error("Update failed:", err)); //using console instead of alert
+};
+
 window.updatePetStatus = function (id, healthStatus) {
   fetch("api.php", {
     method: "PUT",
