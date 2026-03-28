@@ -291,6 +291,9 @@ body {
   align-items: center;
   gap: 5px;
 }
+.manage-card-actions input {
+  cursor: pointer;
+}
 .manage-card-actions select {
   background: rgba(255, 253, 253, 0.15);
   border: 1px solid rgba(255, 253, 253, 0.3);
