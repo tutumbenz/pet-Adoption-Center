@@ -10,7 +10,7 @@ try {
         case 'GET':
             $stmt = $pdo->query('SELECT * FROM animals');
             $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            echo json_encode($animals);
+            echo json_encode($animals); // Return and print in the frontend
             break;
 
         case 'POST':
@@ -22,14 +22,15 @@ try {
                 break;
             }
 
-            $stmt = $pdo->prepare('INSERT INTO animals (name, species, color, age, gender, health_status) VALUES (?, ?, ?, ?, ?, ?)');
+            $stmt = $pdo->prepare('INSERT INTO animals (name, species, color, age, gender, health_status, isAdopted) VALUES (?, ?, ?, ?, ?, ?, ?)');
             $stmt->execute([
                 $input['name'],
                 $input['species'],
                 $input['color'],
                 $input['age'],
                 $input['gender'],
-                $input['health_status']
+                $input['health_status'],
+                $input['isAdopted'] ?? 0 // Uses 0 (false) if the user didn't provide a value
             ]);
             
             echo json_encode(['success' => true, 'id' => $pdo->lastInsertId()]);
